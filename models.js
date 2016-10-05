@@ -48,9 +48,9 @@ module.exports = (function(){
     createdAt: false,
     updatedAt: false,
   });
-  //Issue.belongsTo(Project, {as: 'Project'});
-  Project.hasMany(Issue)
-
+  Project.hasMany(Issue);
+  Issue.belongsTo(Project);
+  
   var Language = connection.define('language', {
     name: {
       type: Sequelize.STRING(30),
@@ -62,6 +62,8 @@ module.exports = (function(){
     updatedAt: false,
   });
   Language.hasMany(Project);
+  Project.belongsTo(Language);
+
   connection.sync();
 
   return {
