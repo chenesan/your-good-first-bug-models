@@ -14,10 +14,6 @@ module.exports = (function(){
   });
 
   var Project = connection.define('project', {
-    popularity: {
-      type: Sequelize.INTEGER,
-      field: 'popularity',
-    },
     description: {
       type: Sequelize.STRING(1000),
       field: 'description',
@@ -26,6 +22,15 @@ module.exports = (function(){
       type: Sequelize.STRING,
       field: 'name',
       unique: 'name_url',
+    },
+    popularity: {
+      type: Sequelize.INTEGER,
+      field: 'popularity',
+    },
+    // size of codebase (kb)
+    size: {
+      type: Sequelize.INTEGER,
+      field: 'size',
     },
     url: {
       type: Sequelize.STRING(2083),
