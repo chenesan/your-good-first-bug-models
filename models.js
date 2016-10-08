@@ -14,6 +14,10 @@ module.exports = (function(){
   });
 
   var Project = connection.define('project', {
+    description: {
+      type: Sequelize.STRING(1000),
+      field: 'description',
+    },
     name: {
       type: Sequelize.STRING,
       field: 'name',
@@ -50,7 +54,7 @@ module.exports = (function(){
   });
   Project.hasMany(Issue);
   Issue.belongsTo(Project);
-  
+
   var Language = connection.define('language', {
     name: {
       type: Sequelize.STRING(30),
