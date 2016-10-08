@@ -14,6 +14,10 @@ module.exports = (function(){
   });
 
   var Project = connection.define('project', {
+    popularity: {
+      type: Sequelize.INTEGER,
+      field: 'popularity',
+    },
     description: {
       type: Sequelize.STRING(1000),
       field: 'description',
