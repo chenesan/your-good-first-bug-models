@@ -39,7 +39,6 @@ module.exports = (function(){
     },
   }, {
     createdAt: false,
-    updatedAt: false,
   });
 
   var Issue = connection.define('issue', {
@@ -59,7 +58,6 @@ module.exports = (function(){
     },
   }, {
     createdAt: false,
-    updatedAt: false,
   });
   Project.hasMany(Issue);
   Issue.belongsTo(Project);
@@ -72,7 +70,6 @@ module.exports = (function(){
     }
   }, {
     createdAt: false,
-    updatedAt: false,
   });
   Language.hasMany(Project);
   Project.belongsTo(Language);
