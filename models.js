@@ -52,9 +52,9 @@ module.exports = (function(){
       field: 'url',
       unique: 'title_url',
     },
-    created_at: {
+    createdAt: {
       type: Sequelize.DATE,
-      field: 'created_at',
+      field: 'createdAt',
     },
   }, {
     createdAt: false,
