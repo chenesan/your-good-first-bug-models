@@ -57,12 +57,10 @@ module.exports = (function(){
     title: {
       type: Sequelize.STRING(900),
       field: 'title',
-      unique: 'title_url',
     },
     url: {
       type: Sequelize.STRING(2083),
       field: 'url',
-      unique: 'title_url',
     },
     createdAt: {
       type: Sequelize.DATE,
@@ -79,7 +77,7 @@ module.exports = (function(){
           length: 100,
         },
         {
-          attribute: 'name',
+          attribute: 'url',
           length: 100,
         },
       ],
