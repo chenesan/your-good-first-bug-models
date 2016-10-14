@@ -21,7 +21,6 @@ module.exports = (function(){
     name: {
       type: Sequelize.STRING,
       field: 'name',
-      unique: 'name_url',
     },
     popularity: {
       type: Sequelize.INTEGER,
@@ -35,22 +34,33 @@ module.exports = (function(){
     url: {
       type: Sequelize.STRING(2083),
       field: 'url',
-      unique: 'name_url',
     },
   }, {
     createdAt: false,
+    indexes: [{
+      name: 'name_url',
+      type: 'unique',
+      fields: [
+        {
+          attribute: 'url',
+          length: 100,
+        },
+        {
+          attribute: 'name',
+          length: 100,
+        },
+      ],
+    }],
   });
 
   var Issue = connection.define('issue', {
     title: {
       type: Sequelize.STRING(900),
       field: 'title',
-      unique: 'title_url',
     },
     url: {
       type: Sequelize.STRING(2083),
       field: 'url',
-      unique: 'title_url',
     },
     createdAt: {
       type: Sequelize.DATE,
@@ -58,6 +68,20 @@ module.exports = (function(){
     },
   }, {
     createdAt: false,
+    indexes: [{
+      name: 'title_url',
+      type: 'unique',
+      fields: [
+        {
+          attribute: 'title',
+          length: 100,
+        },
+        {
+          attribute: 'url',
+          length: 100,
+        },
+      ],
+    }],
   });
   Project.hasMany(Issue);
   Issue.belongsTo(Project);
