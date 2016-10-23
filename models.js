@@ -62,6 +62,10 @@ module.exports = (function(){
       type: Sequelize.STRING(2083),
       field: 'url',
     },
+    body: {
+      type: Sequelize.TEXT,
+      field: 'body',
+    },
     createdAt: {
       type: Sequelize.DATE,
       field: 'createdAt',
