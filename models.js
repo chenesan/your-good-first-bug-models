@@ -102,6 +102,15 @@ module.exports = (function(){
   Language.hasMany(Project);
   Project.belongsTo(Language);
 
+  Project.getMaxProjectSize = connection.query(
+    'select max(projects.size) from projects inner join issues on (issues.projectId = projects.id) where projects.id is not null',
+     { type: Sequelize.QueryTypes.SELECT }
+  ).then(
+    (results) => {
+      return results[0]['max(projects.size)'];
+    }
+  );
+
   connection.sync();
 
   return {
