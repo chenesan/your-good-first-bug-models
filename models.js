@@ -102,14 +102,21 @@ module.exports = (function(){
   Language.hasMany(Project);
   Project.belongsTo(Language);
 
-  Project.getMaxProjectSize = connection.query(
-    'select max(projects.size) from projects inner join issues on (issues.projectId = projects.id) where projects.id is not null',
-     { type: Sequelize.QueryTypes.SELECT }
-  ).then(
-    (results) => {
-      return results[0]['max(projects.size)'];
+  Project.getMaxCol = (colName, hasIssue = true) => {
+    // Ususally we want to get max value of column (size, popularity, etc)
+    // in projects which has at least one issue.
+    // it's difficult to do such query with ORM, so we wrap it here.
+    if (hasIssue) {
+      return connection.query(
+        `select max(projects.${colName}) from projects inner join issues on (issues.projectId = projects.id) where projects.id is not null`,
+         { type: Sequelize.QueryTypes.SELECT }
+      ).then(
+        (results) => results[0][`max(projects.${colName})`]
+      );
+    } else {
+      return Project.max(colName);
     }
-  );
+  };
 
   connection.sync();
 
